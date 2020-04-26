@@ -5,16 +5,19 @@ class StocksController < ApplicationController
         @stock = Stock.new_lookup(params[:stock])
           if @stock
             respond_to do |format|
-              format.js { render partial: 'users/result'}
+              format.js { render partial: 'users/result' }
             end
           else
-            flash[:alert] = "Please enter a valid stock to search"
-            redirect_to my_portfolio_path
+            respond_to do |format|
+              flash.now[:alert] = "Please enter a valid stock to search"
+              format.js { render partial: 'users/result' }
+            end
           end
     else
-      flash[:alert] = "Stock can't be blank."
-      redirect_to my_portfolio_path
+      respond_to do |format|
+        flash.now[:alert] = "Stock can't be blank."
+        format.js { render partial: 'users/result' }
+      end
     end
   end
-
 end
