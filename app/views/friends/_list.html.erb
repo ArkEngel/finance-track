@@ -19,7 +19,7 @@
               <%= stock.ticker %>
               <% end %>
             </td>
-            <td><%= link_to 'Unfollow', friendship_path(friend), method: :delete, data: {confirm: 'Unfriend?'},
+            <td><%= link_to 'Unfollow', friendship_path(friend), method: :delete, data: {confirm: 'Unfollow?'},
                                           class: 'btn btn-sm btn-warning' %> </td>
           </tr>
         <% end %>
