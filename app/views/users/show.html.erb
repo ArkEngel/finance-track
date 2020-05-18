@@ -1,0 +1,29 @@
+<h2>User Details</h2>
+
+
+
+<div class="card card-header results-block">
+  <table class="col-md-12">
+    <tbody>
+      <tr>
+        <td><strong><%= "#{@user.first_name} #{@user.last_name}" %></strong></td>
+        <td><%= @user.email %></td>
+        <td>
+          <% if current_user.not_friends_with?(@user.id) %>
+            <%= link_to 'Follow', friendship_index_path(friend: @user), class: 'btn btn-xs btn-success', method: :post %>
+          <% else %>
+            <%= link_to 'Unfollow', friendship_path(@user), method: :delete, data: {confirm: 'Unfollow?'},
+                                        class: 'btn btn-sm btn-warning' %>
+
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<% if !@tracked_stocks.empty? %>
+  <%= render 'stocks/list' %>
+<% else %>
+  <p class='lead'>This user isn't tracking any stocks yet.</p>
+<% end %>
